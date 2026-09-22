@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create PRD"
+  short_description: "Interview et génération du PRD projet"
+  default_prompt: "Utilise $create-prd pour interviewer l'utilisateur puis générer le PRD validé, sans inventer les informations manquantes."

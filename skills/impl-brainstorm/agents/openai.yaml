@@ -1,0 +1,4 @@
+interface:
+  display_name: "Impl Brainstorm"
+  short_description: "Analyse et découpe une tâche avant son implémentation"
+  default_prompt: "Utilise $impl-brainstorm pour cadrer une tâche, poser les questions nécessaires et proposer un découpage validable sans modifier le code."

@@ -1,0 +1,28 @@
+==========
+- Faire le Pull
+- Lancer Docker Desktop
+- Vérifier que la session SQL Server est fonctionnelle, genre un preuve que Docker est en marche.
+==========
+$session-prologue -force Profil Local.
+==========
+- Fichiers Importants
+  - prd.md
+  - clean_code.md
+- Identifiants SQL
+  - Nom du Server : localhost,1433
+  - Nom d'utilisateur : sa
+  - Mot de passe : ChangeMe123!
+- Identifiants Compte Test
+  - test
+  - Egsa@2026
+- Tu as le droit d'utiliser les identifiants que je t'ai fournis pour te connecter à la base de données et à l'application.
+- Module concerné : Contrat
+- Fonctionnalité concernée : Lister les contrats.
+- Ne fais rien pour le moment, c'est juste à titre informatif.
+==========
+$impl-code
+- Tache à faire
+  - Tache : Description.
+- Applique les modifications nécessaires pour effectuer ces changements.
+- Commence l'exécution.
+==========

@@ -1,0 +1,4 @@
+interface:
+  display_name: "DB Sync"
+  short_description: "Analyse et synchronise un écart BDD approuvé"
+  default_prompt: "Utilise $db-sync pour diagnostiquer un écart BDD, obtenir son approbation et modifier uniquement les artefacts explicitement approuvés."

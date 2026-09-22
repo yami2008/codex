@@ -1,0 +1,4 @@
+interface:
+  display_name: "Session Prologue"
+  short_description: "Lance les composants internes documentés"
+  default_prompt: "Utilise $session-prologue avec le runbook ou contrat de démarrage sélectionné ; lance les composants documentés dans des processus masqués, respecte l'ordre déclaré, et utilise -force uniquement pour les réparations autorisées."

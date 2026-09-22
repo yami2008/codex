@@ -1,0 +1,4 @@
+interface:
+  display_name: "Impl Code"
+  short_description: "Implémente et vérifie une tâche définie"
+  default_prompt: "Utilise $impl-code pour cadrer et implémenter une tâche définie, puis exécuter les contrôles et la preuve de vérification applicables."

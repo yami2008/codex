@@ -1,0 +1,4 @@
+interface:
+  display_name: "Find Skills"
+  short_description: "Recherche locale de skills disponibles"
+  default_prompt: "Utilise $find-skills pour rechercher une capacité uniquement dans les skills locales disponibles."
