@@ -1,110 +1,30 @@
 #############
 
-Exemples Of Features : 
-	- Lister les types de facture.
-	- Ajouter un type de facture.
-	- Modifier un type de facture.
-	- Activer/Désactiver un type de facture.
-	- Afficher les détails d'un type de facture.
-	- Supprimer un type de facture.
-	- Joindre des fichiers.
-	- Généralement chaque action qui est sensible de faire une modification dans la base de données.
-	- Généralement c'ets les APIs de tout type sauf GET.
-
-#############
-
 - Affichage de la page.
 - Breadcrump dans la page.
-- Loader sur toute la page pendant le chargement des données.
-- Si Erreur 500 ==> Toast personnalisé ou pas en bas de page disant que Erreur Serveur.
-- Affichage du datatable + Choix des colonnes.
-- Titre du datatable.
+- Ajouter un titre à la page.
+- Ajouter une descirption à la page.
+- Ajouter un titre du datatable en dehors du datatable. // Optionnellement, ça dépend, c'est généralement quand on ajoute dans la pages des Tabs.
+- Ajouter une description du datatable en dehors du datatable. // Même remarque.
+===
+- Affichage du datatable + Choix des colonnes // Le choix des colonnes est très important.
 - Mode d'affichage de chaque colonne (Alignement middle right ou left, Chips, Texte en bold, Colonne qui doit attirer l'attention, Colonne Icone, Flags).
-- Nombre d'élements.
-- Etat vide : Empty state.
+- Afficher le titre significatif du datatable.
+- Afficher le nombre d'élements total.
+- Etat vide : Empty state: Je ne veux pas de Mock Data, je veux voir le tableau vide.
+===
+- API pour récupérer les données.
 - Pagination (Backend ou Frontend).
+- Pagination implémenté fonctionnelle, je peux naviguer depuis n'importe quel page.
 - Changer le nombre d'élements par page.
-- Sorting.
+- Loader sur toute la page pendant le chargement des données.
+- Si Erreur lors du chargement de la page ==> Toast personnalisé ou pas en bas de page disant que Erreur Serveur.
+- Si type d'erreur claire, par exemple Permission denied, etc.. ==> Toast personnalisé ou pas en bas de page expliquant à l'utilisateur le problème en question.
+===
 - Global Search.
-- Highlight entre ce que le user tape et les résultats proposés (Dans Gloabel ou Complexe Searching ou les deux, à toi de voir).
-- Complex Filter (Inputs dans un Drawer ?, Modale ?, Collapse ?, Affichés en haut ? Autre ?).
-- Exporter excel.
-- Actualiser.
-- Show/Hide colonnes.
-- Sticky Header.
-- Fixer le Height du datatable.
-- Ajout de la Colonne 'Action'.
-- Actions groupées.
-- Avoir la possibilité de sélectionner un élement, plusieurs éléments, tous les éléments, Genre à la GMail.
-- Expand row : Pour afficher des informations supplémentaires.
-- KPIs.
-- Tableau Responsive.
-- Stratégie du Fetch Once.
-- Startégie du Fetch Fusion.
-- Cache Backend ou Frontend.
+- Highlight entre ce que le user tape et les résultats proposés.
+- Le loading soit convrir unqiuement le Data table uniquement.
+===
+- Bouton Actualiser: Quand je clique dessus, il ne recharge pas toute la page mais uniquement le tableau, et le loader n'est pas global.
 
-#############
-
-- Bouton Ajouter.
-- Où mettre le formulaire ? ==> Modale/pages/Stepper/Autre.
-- Mettre les champs que le user remplit et/ou modifie.
-- Ajouter '*' davant les labels des champs obligatoire.
-- Choisir le bon type de input selon son rôle (Input numérique, Select simple mono-selection, Select simple multi-selection, Autocomplete Frontend ou Backend mono-selection, Autocomplete Frontend ou Backend multi-selection, Toggle, Cases à cocher, Radio bouton, Date, Mask, Datepicker, Number, Decimal, Etc...).
-- Validation Frontend.
-- Validation Backend.
-- Si Erreur 422 ==> Messages d'erreurs sous les champs concernés + auto-scroll vers la première erreur et si en plus on a un stepper, revenir vers le step de la première erreur, afin que le user sache où est l'erreur et soit redirigé directement vers elle.
-- Si Erreur 500 ==> Toast en bas de page disant que Erreur Serveur.
-- Si ni Erreur 422 ni Erreur 500 ==> 404 ou 403 ou 401 etc... ==> On affiche un Toast expliquant l'erreur sans trop entrer dans les détails, par exmeple "élement introvable", "permissions denied", etc...
-- Quand je modifie un champ qui est en erreur, son état d'erreur doit disparaitre.
-- Disable les boutons d'ajout/modification + les champs pendant l'appel api pour évitr le multi-request et/ou que le user change dans ses champs à la denrière minutes.
-- Mise à jour et traitement backend.
-	- Traitement backend.
-	- Persistance dans la base de données.
-	- Retourner Response.
-- Mise à jour et traitement frontend.
-	- Boîte de succès personnalisée.
-	- MAJ du datatable et/ou de la table en temps réel sans besoin de reload ni nouvel appel API.
-	- L'élément ajouté se place en HAUT du datatable.
-	- Effet clignotant sur la ligne ajoutée (repère visuel).
-- Stratégie Fetch once.
-- Elle consiste à ne pas envoyer de requêtes api pour récupérer les données si ces dernières sont déjà présente dans le frontend afin de ne pas surhcarger le serveur, on voit son intérêt généralement quand il y a des Méta données, genre si je charge des méta données d'un select ou autre, le mieux est de les garder en frontend afin de ne plus faire de nouvelle requêtes api au backend.
-- Cache Backend ou Frontend si nécéssaire.
-- Pour les mêmes raisons que le Fetch Once, si des données de type méta-data, ça serait bien de les garder en cache backend, comme ça si un autre les demande, il va les trouver.
-
-#############
-
-- Bouton Modifier.
-- Champs pré-remplis avec les valeurs actuelles.
-- Bouton "Enregistrer" désactivé tant qu'aucun champ n'est modifié; il s'active dès qu'une valeur change (dirty check).
-- Si aucune modification -> aucun appel API (on ne fait rien), genre si on a toutes les informations dans le front, pas besoin de faire une appel api.
-- Garder l'édition sous conditions ==> Si ce item est used by un autre ==> Modale d'erreur personnalisée "Modification impossible" + (message clair et net).
-- Savoir quels champs on peut les modifier lesquels on ne peut pas, ces dernier doivent être en lecture seule.
-- Traitement backend.
-	- Traitement backend.
-	- Persistance dans la base de données.
-	- Retourner Response.
-- Mise à jour et traitement frontend.
-	- Boîte de succès personnalisée
-	- MAJ du datatable en direct (sans reload ni nouvel appel API)
-	- Effet clignotant sur la ligne mod
-	- Effet clignotant sur la ligne modifiée (repère visuel).
-- Stratégie Fetch once.
-- Elle consiste à ne pas envoyer de requêtes api pour récupérer les données si ces dernières sont déjà présente dans le frontend afin de ne pas surhcarger le serveur, on voit son intérêt généralement quand il y a des Méta données, genre si je charge des méta données d'un select ou autre, le mieux est de les garder en frontend afin de ne plus faire de nouvelle requêtes api au backend.
-- Cache Backend ou Frontend si nécéssaire.
-- Pour les mêmes raisons que le Fetch Once, si des données de type méta-data, ça serait bien de les garder en cache backend, comme ça si un autre les demande, il va les trouver.
-
-#############
-
-- Bouton Supprimer.
-- Boite de confirmation personnalisée + Message clair et net afin que le user sache et comprenne bien ce qu'il s'apprête à faire.
-- Suppression sous condition ==> Si l'élément est utilisé quelque part ==> Suppression impossible + Modale d'erreur personnalisée + message clair et net.
-- Traitement backend.
-	- Traitement backend.
-	- Persistance dans la base de données.
-	- Retourner Response.
-- Mise à jour et traitement frontend.
-	- Boîte de succès personnalisée.
-	- MAJ du datatable en direct (sans reload ni nouvel appel API).
-	- L'élément supprimé se retire du datatable.
-	
 #############

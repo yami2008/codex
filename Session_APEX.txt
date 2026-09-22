@@ -18,6 +18,7 @@ $session-prologue -force Profil Local.
 - Tu as le droit d'utiliser les identifiants que je t'ai fournis pour te connecter à la base de données et à l'application.
 - Module concerné : Contrat
 - Fonctionnalité concernée : Lister les contrats.
+- Il faut absolument que tout component doit être issu du dossier @shared, ceci afin de s'assurer d'avoir les mêmes UIs dans toutes les pages.
 - Ne fais rien pour le moment, c'est juste à titre informatif.
 ==========
 $impl-code
