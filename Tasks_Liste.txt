@@ -1,0 +1,35 @@
+- Affichage de la page.
+- Ajouter un titre du data table en dehors du data table.
+- Ajouter une description du data table en dehors du data table.
+- Affichage du data table + Choix des colonnes
+- Mode d'affichage de chaque colonne (Alignement middle right ou left, Chips, Texte en bold, Colonne qui doit attirer l'attention, Colonne Icone, Flags).
+- Afficher le titre significatif du datatable.
+- Afficher le nombre d'élements total.
+- Etat vide : Empty state: Je ne veux pas de Mock Data, je veux voir le tableau vide.
+- API pour récupérer les données.
+- Pagination (Backend ou Frontend).
+- Pagination implémenté fonctionnelle, je peux naviguer depuis n'importe quel page.
+- Changer le nombre d'éléments par page.
+- Loader sur toute la page pendant le chargement des données.
+- Si Erreur lors du chargement de la page ==> Toast personnalisé ou pas en bas de page disant que Erreur Serveur.
+- Si type d'erreur claire, par exemple Permission denied, etc.. ==> Toast personnalisé ou pas en bas de page expliquant à l'utilisateur le problème en question.
+- Global Search.
+- Highlight entre ce que le user tape et les résultats proposés.
+- Le loading soit couvrir uniquement le Data table uniquement.
+- Bouton Actualiser: Quand je clique dessus, il ne recharge pas toute la page mais uniquement le tableau, et le loader n'est pas global.
+- Sorting : Toutes les colonnes qui peuvent être sortées.
+- Complex Filter (Inputs dans un Drawer ?, Modale ?, Collapse ?, Affichés en haut ? Autre ?).
+- Choix des filtres.
+- Bouton Exporter Excel.
+- Bouton Show/Hide colonnes.
+- Tableau Responsive.
+- Sticky Header.
+- Fixer le Height du data table.
+- Ajout de la Colonne 'Action'.
+- Actions groupées.
+- Avoir la possibilité de sélectionner un élément, plusieurs éléments, tous les éléments, Genre à la Gmail.
+- Expand row : Pour afficher des informations supplémentaires.
+- KPIs.
+- Stratégie du Fetch Once.
+- Stratégie du Fetch Fusion.
+- Cache Backend ou Frontend.

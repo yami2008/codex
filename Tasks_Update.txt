@@ -1,0 +1,19 @@
+- Bouton Modifier.
+- Champs pré-remplis avec les valeurs actuelles.
+- Bouton "Enregistrer" désactivé tant qu'aucun champ n'est modifié; il s'active dès qu'une valeur change (dirty check).
+- Si aucune modification -> aucun appel API (on ne fait rien), genre si on a toutes les informations dans le front, pas besoin de faire une appel api.
+- Garder l'édition sous conditions ==> Si ce item est used by un autre ==> Modale d'erreur personnalisée "Modification impossible" + (message clair et net).
+- Savoir quels champs on peut les modifier lesquels on ne peut pas, ces dernier doivent être en lecture seule.
+- Traitement backend.
+	- Traitement backend.
+	- Persistance dans la base de données.
+	- Retourner Response.
+- Mise à jour et traitement frontend.
+	- Boîte de succès personnalisée
+	- MAJ du datatable en direct (sans reload ni nouvel appel API)
+	- Effet clignotant sur la ligne mod
+	- Effet clignotant sur la ligne modifiée (repère visuel).
+- Stratégie Fetch once.
+- Elle consiste à ne pas envoyer de requêtes api pour récupérer les données si ces dernières sont déjà présente dans le frontend afin de ne pas surhcarger le serveur, on voit son intérêt généralement quand il y a des Méta données, genre si je charge des méta données d'un select ou autre, le mieux est de les garder en frontend afin de ne plus faire de nouvelle requêtes api au backend.
+- Cache Backend ou Frontend si nécéssaire.
+- Pour les mêmes raisons que le Fetch Once, si des données de type méta-data, ça serait bien de les garder en cache backend, comme ça si un autre les demande, il va les trouver.

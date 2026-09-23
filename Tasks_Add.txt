@@ -1,0 +1,25 @@
+- Bouton Ajouter.
+- Où mettre le formulaire ? ==> Modale/pages/Stepper/Autre.
+- Mettre les champs que le user remplit et/ou modifie.
+- Ajouter '*' davant les labels des champs obligatoire.
+- Choisir le bon type de input selon son rôle (Input numérique, Select simple mono-selection, Select simple multi-selection, Autocomplete Frontend ou Backend mono-selection, Autocomplete Frontend ou Backend multi-selection, Toggle, Cases à cocher, Radio bouton, Date, Mask, Datepicker, Number, Decimal, Etc...).
+- Validation Frontend.
+- Validation Backend.
+- Si Erreur 422 ==> Messages d'erreurs sous les champs concernés + auto-scroll vers la première erreur et si en plus on a un stepper, revenir vers le step de la première erreur, afin que le user sache où est l'erreur et soit redirigé directement vers elle.
+- Si Erreur 500 ==> Toast en bas de page disant que Erreur Serveur.
+- Si ni Erreur 422 ni Erreur 500 ==> 404 ou 403 ou 401 etc... ==> On affiche un Toast expliquant l'erreur sans trop entrer dans les détails, par exmeple "élement introvable", "permissions denied", etc...
+- Quand je modifie un champ qui est en erreur, son état d'erreur doit disparaitre.
+- Disable les boutons d'ajout/modification + les champs pendant l'appel api pour évitr le multi-request et/ou que le user change dans ses champs à la denrière minutes.
+- Mise à jour et traitement backend.
+	- Traitement backend.
+	- Persistance dans la base de données.
+	- Retourner Response.
+- Mise à jour et traitement frontend.
+	- Boîte de succès personnalisée.
+	- MAJ du datatable et/ou de la table en temps réel sans besoin de reload ni nouvel appel API.
+	- L'élément ajouté se place en HAUT du datatable.
+	- Effet clignotant sur la ligne ajoutée (repère visuel).
+- Stratégie Fetch once.
+- Elle consiste à ne pas envoyer de requêtes api pour récupérer les données si ces dernières sont déjà présente dans le frontend afin de ne pas surhcarger le serveur, on voit son intérêt généralement quand il y a des Méta données, genre si je charge des méta données d'un select ou autre, le mieux est de les garder en frontend afin de ne plus faire de nouvelle requêtes api au backend.
+- Cache Backend ou Frontend si nécéssaire.
+- Pour les mêmes raisons que le Fetch Once, si des données de type méta-data, ça serait bien de les garder en cache backend, comme ça si un autre les demande, il va les trouver.

@@ -1,0 +1,11 @@
+- Bouton Supprimer.
+- Boite de confirmation personnalisée + Message clair et net afin que le user sache et comprenne bien ce qu'il s'apprête à faire.
+- Suppression sous condition ==> Si l'élément est utilisé quelque part ==> Suppression impossible + Modale d'erreur personnalisée + message clair et net.
+- Traitement backend.
+	- Traitement backend.
+	- Persistance dans la base de données.
+	- Retourner Response.
+- Mise à jour et traitement frontend.
+	- Boîte de succès personnalisée.
+	- MAJ du datatable en direct (sans reload ni nouvel appel API).
+	- L'élément supprimé se retire du datatable.

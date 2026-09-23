@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plan Feature"
+  short_description: "Builds a numbered feature plan from your task catalogs"
+  default_prompt: "Create a numbered plan for this feature: $ARGUMENTS"
