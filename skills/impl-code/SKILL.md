@@ -132,7 +132,9 @@ est absente, ou si elle est illisible. Une source optionnelle absente ne bloque
 pas ; une source explicitement requise par le projet ou nécessaire pour
 comprendre, décider ou vérifier bloque jusqu'à clarification. Si le projet
 désigne un fichier `clean-code` ou équivalent comme obligatoire et qu'il manque,
-arrête l'étape concernée.
+arrête l'étape concernée. Lorsqu'un tel fichier est désigné comme obligatoire,
+lis-le avant toute écriture et traite chacune de ses règles applicables comme
+un critère de fin obligatoire, pas comme un conseil.
 
 Si une information durable, utile et confirmée doit être conservée dans
 `notes.<module>.md` :
@@ -197,6 +199,15 @@ nature, au risque et à l'impact du changement :
 8. exécute les preuves et contrôles applicables avant de déclarer la tranche
    terminée.
 
+Les tests doivent correspondre au comportement et aux risques du périmètre.
+N'ajoute ni ne présente de tests artificiels, hors sujet ou sans preuve utile.
+Pour un comportement backend soumis à une convention TDD du projet, écris et
+exécute d'abord les tests pertinents pour constater l'échec attendu, puis
+implémente. Couvre les cas positifs (données valides), négatifs (données
+invalides et rejets), limites (seuils et frontières) et edge cases (données
+inhabituelles mais valides) lorsqu'ils s'appliquent ; justifie brièvement toute
+catégorie non applicable et n'invente jamais les attentes métier.
+
 Cette vérification ne force pas un test unitaire artificiel pour une navigation,
 un parcours complet ou une interaction entre services. Elle ne modifie pas
 automatiquement le fichier des tâches et ne crée pas de fichier de scénarios
@@ -242,6 +253,16 @@ la commande.
 Exécute les contrôles réellement applicables à la tranche : formatage, analyse
 statique, compilation, tests ciblés, vérification d'interface ou contrôle
 d'intégration non destructif, selon les outils déclarés par le projet.
+
+Avant le verdict, vérifie le comportement réellement livré, et pas seulement le
+code source. Si le changement nécessite qu'une application, un serveur ou un
+backend soit redémarré pour prendre effet, utilise la procédure documentée du
+projet pour le redémarrer, puis contrôle son démarrage et le fonctionnement du
+parcours touché (par exemple un endpoint de santé et le comportement modifié).
+Ne redémarre pas un service sans nécessité. Si un redémarrage ou un contrôle
+fonctionnel nécessaire ne peut pas être réalisé, indique le blocage et marque
+la tranche `NON TERMINÉE` ; ne certifie pas le fonctionnement sur la seule base
+de la compilation ou de tests qui ne couvrent pas ce point.
 
 Après une correction significative, relance les contrôles concernés.
 
