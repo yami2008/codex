@@ -6,9 +6,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/vercel-labs/skills.git",
       "skillPath": "skills/find-skills/SKILL.md",
-      "skillFolderHash": "3013fdeb8a11b10b1eb795ec3ae8bfca38f7c26d",
-      "installedAt": "2026-04-10T14:21:30.914Z",
-      "updatedAt": "2026-04-10T14:21:30.914Z"
+      "skillFolderHash": "76a98a285cb0434f3d39e1a873823556330e398b",
+      "installedAt": "2026-09-27T07:08:11.184Z",
+      "updatedAt": "2026-09-27T07:08:15.017Z"
     }
   },
   "dismissed": {
@@ -16,18 +16,16 @@
   },
   "lastSelectedAgents": [
     "amp",
-    "antigravity",
     "cline",
     "codex",
     "cursor",
-    "deepagents",
-    "dexto",
-    "firebender",
+    "droid",
     "gemini-cli",
     "github-copilot",
-    "kimi-cli",
+    "kilo",
+    "kimi-code-cli",
     "opencode",
     "warp",
-    "claude-code"
+    "zed"
   ]
 }
