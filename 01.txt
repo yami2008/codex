@@ -9,26 +9,23 @@
 - Commence l'exécution.
 ==========
 Taches à faire
-- Lire le fichier [prd.md](ERP_Docs/Artefacts/prd.md)&#x20;
+- Lire le fichier @prd.md
 - Identifiants SQL
   - Nom du Server : localhost,1433
   - Nom d'utilisateur : sa
   - Mot de passe : ChangeMe123!
 - Identifiants Compte Test
   - test
-  - Egsa\@2026
+  - Egsa@2026
 - Tu as le droit d'utiliser les identifiants que je t'ai fournis pour te connecter à la base de données et à l'application.
-- Lire absolument le fichier [clean\_code.txt](ERP_Docs/Artefacts/clean_code.txt) et les appliquer toutes dans ce qui va suivre.
+- Lire absolument le fichier @clean\_code.txt et les appliquer toutes dans ce qui va suivre.
 - Est ce que les consignes de ce fichiers sont claires ? Tu dois les appliquer dans tous ce qui va suivre.
-- Le fichier [AGENTS.md](AGENTS.md) te force à charger le contenue de ce fichier à chaque fois.
-- On va travailler sur
-  - Module : Contrat.
-  - Fonctionnalité : Liste des contrats.
+- Le fichier @AGENTS.md te force à charger le contenue de ce fichier à chaque fois.
 - Ne fais rien pour le moment, c'est juste à titre informatif.
 ==========
 Module : Contrat
 Fonctionnalité : Afficher les détails d'un contrat.
-Schéma de base de données : [schema.contrat.md](ERP_Docs/Modules/Contrat/schema.contrat.md) 
+Schéma de base de données : schema.contrat.md
 Ne fais rien pour le moment
 ==========
 - Je te rappelle la chose suivante
