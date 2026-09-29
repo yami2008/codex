@@ -26,6 +26,11 @@ Taches à faire
   - Fonctionnalité : Liste des contrats.
 - Ne fais rien pour le moment, c'est juste à titre informatif.
 ==========
+Module : Contrat
+Fonctionnalité : Afficher les détails d'un contrat.
+Schéma de base de données : [schema.contrat.md](ERP_Docs/Modules/Contrat/schema.contrat.md) 
+Ne fais rien pour le moment
+==========
 - Je te rappelle la chose suivante
 - Ce module n'est pas le mien de base.
 - Il appartenait à un collègue qui a démissionné, donc je n'ai pas assez de contexte et d'explication et d'informations dessus, quand je suis arrivé, j'ai trouvé un module, une conception faite
