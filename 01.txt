@@ -18,42 +18,21 @@ Taches à faire
   - test
   - Egsa@2026
 - Tu as le droit d'utiliser les identifiants que je t'ai fournis pour te connecter à la base de données et à l'application.
-- Lire absolument le fichier @clean\_code.txt et les appliquer toutes dans ce qui va suivre.
+- Lire absolument le fichier @clean_code.txt et les appliquer toutes dans ce qui va suivre.
 - Est ce que les consignes de ce fichiers sont claires ? Tu dois les appliquer dans tous ce qui va suivre.
 - Le fichier @AGENTS.md te force à charger le contenue de ce fichier à chaque fois.
 - Ne fais rien pour le moment, c'est juste à titre informatif.
 ==========
-Module : Contrat
-Fonctionnalité : Afficher les détails d'un contrat.
-Schéma de base de données : schema.contrat.md
-Ne fais rien pour le moment
-==========
-- Je te rappelle la chose suivante
-- Ce module n'est pas le mien de base.
-- Il appartenait à un collègue qui a démissionné, donc je n'ai pas assez de contexte et d'explication et d'informations dessus, quand je suis arrivé, j'ai trouvé un module, une conception faite
-- Tu vois ce que je veux dire ?
+- Module : Contrat
+- Fonctionnalité : Valider Un Contrat
+- Schéma de base de données : @schema.contrat.md
+- Ne fais rien pour le moment
 ==========
 Taches à faire
-1. Faire un Audit complet afin de voir si la stratégie : Component-Sation a belle et bien été respectée, c'est à dire le frontend doit uniquement utiliser des components, et ces components doivent être issus de [shared](EGSA_ERP_Frontend/src/app/shared/) , soit tu en crées et tu les utilises, soit tu les utilises directement.
-2. Applique les modifications en cas de problème.
-3. Agis comme un Dev Web Expert
-4. Commence l'audit
+- Stratégie Component-Sation: c'est à dire que tout doit être issu d'un component, jamais de Div, qui se balade, et que ces components doivent être issu de @shared, donc soit tu trouves ton component dedans et tu l'utilises directement, soit tu en crées un nouveau dedans et tu l'utilises.
+- Applique les règles de @clean_code.txt
+- L'UI/UX doit être bien faite, mets toi dans la peau d'un user du logiciel.
+- Responsivité Obligatoire.
+- Agis comme un expert en Développement Web.
+- Commence l'exécution
 ==========
-
-Oui, j’ai compris. Pour l’audit, je vais repérer les interfaces codées directement dans les pages ou composants, puis déterminer lesquelles méritent d’être factorisées dans `shared` parce qu’elles sont réutilisables — comme les onglets. Si un composant adapté existe déjà, il faudra le réutiliser.
-Les pages et composants propres à un module pourront rester dans ce module; l’objectif est de partager les éléments d’interface réutilisables. Je ne modifierai rien pour le moment.
-
-- Ok
-- Est ce que tu pourrais me confirmer que tous les scénarios possibles sont opérationnelles
-  - Positive Cases
-  - Negative Cases
-  - Edge Cases
-  - Boundary Cases
-- Pour le Frontend et le Backend
-- Je te donne la permission de run toutes les requêtes que tu juges nécessaires pour faire un testes réel
-- Fais un test réel de la fonctionnalité Ajouter Un contrat
-- Vérifie que tous fonctionne correctement
-- Les scénarios sont tous bons
-- Tout est logique.
-- Commence le test
-utilise le navigateur intégré

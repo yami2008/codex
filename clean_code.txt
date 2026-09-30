@@ -30,4 +30,10 @@ RÈGLES DE PROGRAMMATION
 - Page d’ajout : prends comme référence la page qui permet de créer une facture manuellement.
 - Boîtes de confirmation, notifications toast, etc. : utilise le module Aéroport ou le module Bien comme seule source de vérité.
 
+6. Commentaires et compréhension du code
+- Le code doit être commenté de façon à ce qu’un humain puisse comprendre facilement le rôle et le fonctionnement de ses parties importantes.
+- Commente les blocs de logique métier, les fonctions et méthodes, ainsi que les requêtes complexes. Explique leur objectif, leur comportement ou les raisons d’un choix lorsque cela n’est pas évident à la lecture du code.
+- Dans les templates HTML, commente les blocs significatifs en précisant ce qu’ils affichent ou quel rôle ils remplissent dans l’interface.
+- Évite les commentaires ligne par ligne qui ne font que reformuler du code évident. Les commentaires doivent apporter une explication utile et rester à jour avec le code.
+
 

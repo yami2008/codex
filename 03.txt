@@ -1,0 +1,20 @@
+==========
+Taches à faire
+- Fais moi un test réel de tous les scenarios possibles pour la fonctionnalité : Ajouter Contrat.
+- Vérifie que tous les Positive Cases, Negative Cases, Edge Cases et Boundary Cases ont tous été testé et vérifié, que ce soit en Unit Test ou autre.
+- Je te donne la permission de run toutes les requêtes que tu juges nécessaires pour faire un testes réel dans la base de données.µ
+- Fais un test réel de la fonctionnalité Ajouter Un contrat.
+- Vérifie que tous fonctionne correctement.
+- Utilise le navigateur intégré.
+- Vérifier les réponses de l’API et la persistance en SQL, puis compléte les tests automatisés pour les cas positifs, négatifs et les valeurs limites.
+- L'objectif est de vérifier que tous est bon, que tout fonctionne correctement
+- As tu compris ce que je veux faire ?
+- A la fin génère moi un rapport Markdown qui résume ça et surtout en me donnant un tableau à 4 colonne, Priorité + Déclancheur + Résultat observé + Comportement Attendu.
+==========
+Taches à faire
+- Faire un Audit complet afin de voir si la stratégie : Component-Sation a belle et bien été respectée, c'est à dire le frontend doit uniquement utiliser des components, et ces components doivent être issus de @shared, soit tu en crées et tu les utilises, soit tu les utilises directement.
+- Repère les interfaces codées directement dans les pages ou composants, puis déterminer lesquelles méritent d’être factorisées dans `shared` parce qu’elles sont réutilisables — comme les onglets. Si un composant adapté existe déjà, il faudra le réutiliser.
+- Applique les modifications en cas de problème.
+- Agis comme un Dev Web Expert
+- Commence l'audit
+==========
