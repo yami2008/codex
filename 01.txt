@@ -39,3 +39,21 @@ Taches à faire
 3. Agis comme un Dev Web Expert
 4. Commence l'audit
 ==========
+
+Oui, j’ai compris. Pour l’audit, je vais repérer les interfaces codées directement dans les pages ou composants, puis déterminer lesquelles méritent d’être factorisées dans `shared` parce qu’elles sont réutilisables — comme les onglets. Si un composant adapté existe déjà, il faudra le réutiliser.
+Les pages et composants propres à un module pourront rester dans ce module; l’objectif est de partager les éléments d’interface réutilisables. Je ne modifierai rien pour le moment.
+
+- Ok
+- Est ce que tu pourrais me confirmer que tous les scénarios possibles sont opérationnelles
+  - Positive Cases
+  - Negative Cases
+  - Edge Cases
+  - Boundary Cases
+- Pour le Frontend et le Backend
+- Je te donne la permission de run toutes les requêtes que tu juges nécessaires pour faire un testes réel
+- Fais un test réel de la fonctionnalité Ajouter Un contrat
+- Vérifie que tous fonctionne correctement
+- Les scénarios sont tous bons
+- Tout est logique.
+- Commence le test
+utilise le navigateur intégré
