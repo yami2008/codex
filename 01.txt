@@ -33,3 +33,9 @@ Ne fais rien pour le moment
 - Il appartenait à un collègue qui a démissionné, donc je n'ai pas assez de contexte et d'explication et d'informations dessus, quand je suis arrivé, j'ai trouvé un module, une conception faite
 - Tu vois ce que je veux dire ?
 ==========
+Taches à faire
+1. Faire un Audit complet afin de voir si la stratégie : Component-Sation a belle et bien été respectée, c'est à dire le frontend doit uniquement utiliser des components, et ces components doivent être issus de [shared](EGSA_ERP_Frontend/src/app/shared/) , soit tu en crées et tu les utilises, soit tu les utilises directement.
+2. Applique les modifications en cas de problème.
+3. Agis comme un Dev Web Expert
+4. Commence l'audit
+==========
