@@ -1,0 +1,44 @@
+========================================================================
+MODULE FACTURE — Liste des fonctionnalités retenues
+Service : facturation-service
+Document de travail (PM) — liste à plat, l'ordre n'indique pas de priorité
+États : [ ] à faire   [~] en cours   [x] livrée   [!] bloquée
+========================================================================
+
+    [ ] Lister les types de facture.
+    [ ] Ajouter un type de facture.
+    [ ] Modifier un type de facture.
+    [ ] Supprimer un type de facture.
+
+    [ ] Lister les factures.
+
+    [ ] Générer les factures automatiquement.
+    [ ] Modifier une facture générée automatiquement.
+    [ ] Supprimer une facture générée automatiquement.
+
+    [ ] Générer une facture manuellement.
+    [ ] Modifier une facture générée manuellement.
+    [ ] Supprimer une facture générée manuellement.
+
+    [ ] Officialiser une facture (Brouillon → Définitive).
+    
+    [ ] Dupliquer une facture.
+
+    [ ] Exporter une facture.
+    [ ] Exporter plusieurs factures.
+    [ ] Exporter un rapport d'état.
+    [ ] Exporter plusieurs rapports d'état.
+    [ ] Exporter Facture + Rapport d'état.
+    [ ] Exporter plusieurs factures et rapports d'état.
+        
+    [ ] Consulter le détail d'une facture.
+    [ ] Joindre des fichiers/pièces jointes à une facture.
+    [ ] Créer un Avoir.
+    [ ] Marquer une facture comme envoyée au client.
+    [ ] Marquer plusieurs factures comme envoyées au client.
+
+    [ ] Afficher les factures d'un client donné.
+    [ ] KPI chiffre d'affaires par aéroport / mois comptable.
+    [ ] État d'avancement de la facturation par aéroport / mois.
+
+========================================================================

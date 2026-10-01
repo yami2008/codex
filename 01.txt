@@ -28,11 +28,3 @@ Taches à faire
 - Schéma de base de données : @schema.contrat.md
 - Ne fais rien pour le moment
 ==========
-Taches à faire
-- Stratégie Component-Sation: c'est à dire que tout doit être issu d'un component, jamais de Div, qui se balade, et que ces components doivent être issu de @shared, donc soit tu trouves ton component dedans et tu l'utilises directement, soit tu en crées un nouveau dedans et tu l'utilises.
-- Applique les règles de @clean_code.txt
-- L'UI/UX doit être bien faite, mets toi dans la peau d'un user du logiciel.
-- Responsivité Obligatoire.
-- Agis comme un expert en Développement Web.
-- Commence l'exécution
-==========
