@@ -1,0 +1,29 @@
+==========
+Taches à faire 
+1. Pour chaque fonctionnalité de ce module, fais moi une capture d'écran afin de pouvoir la mettre dans le rapport.
+2. La capture d'écran doit être enregistrée dans un dossier à part portant un nom significatif ou bien on fait un index vers un fichier Texte qui lui décrit le nom de l'image, genre ce que décrit cette capture d'écran, à toi de voir.
+3. C'est tout ce que je voulais que tu fasses, Fonctionnalité === Capture d'écran
+4. Si les données ne sont pas à ta faveur, tu es libre de modifier, d'exécuter des requêtes dans la base de données afin de la rendre adaptable à ton scénario.
+5. Au final, je veux Fonctionnalité + Capture d'écran
+6. Module Concerné : Consolidation Niveau 7.
+7. Utilise la navigateur intégré.
+8. Quand toutes les fonctionnalités auront leurs captures d'écran alors tu peux procéder à la modification du rapport Word.
+9. Tu peux commencer l'exécution.
+10. As tu compris ce que je veux faire
+11. Tu peux commencer l'exécution.
+12. Module : Consolidation Niveau 7.
+==========
+Dernière modifications à faire
+Taches à faire
+1. Ajoute moi une page de garde bien stylée, bien professionnelle.
+2. Numéro de page obligatoire.
+3. Je voudrais que à chaque fois qu'on commence un nouveau module, je veux qu'il soit dans une nouvelle page.
+4. Le header doit être présent dans toutes les pages et il décrit le module courant par exemple Introduction, Plan de Formation etc..
+5. Le header doit aussi contenir toujours l'information suivante : SIRH_Formation.
+6. En fin de document ajoute une page de conclusion.
+7. Ajoute les informations suivantes
+   1. Auteur : CHERIFI Mohamed Yazid
+   2. Date : 27 septembre 2026 à Alger.
+8. D'une manière général, essaie d'enjoliver le document, le plus important est qu'il soit lisible, bien présenté, professionnelle, et ergonome
+9. Commence l'exécution.
+==========
