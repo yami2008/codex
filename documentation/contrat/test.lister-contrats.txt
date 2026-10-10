@@ -1,0 +1,153 @@
+# Tests : Lister les contrats (tests d'intégration et smoke tests de l'interface)
+
+Module          : contrat (operation-service)
+Page de départ  : http://localhost:4200/commercial/contract
+Page testée     : http://localhost:4200/commercial/contract
+Dernier passage : 2026-10-10, environnement local, base de test (egsa_operation)
+Pipeline        : frontend (4200) + operation-service (8083) + base SQL Server, tous trois réels
+Résultat        : 34 PASS, 3 FAILED, 3 BLOQUÉ, 0 non testé (passage du 2026-10-10 après correction d'ANO-17, passage aux aéroports multiples et aux bascules d'échéance et de service)
+
+Statuts :
+- PASS    : vérifié, conforme au résultat attendu.
+- FAILED  : vérifié, non conforme. Détail obligatoire dans la section « Échecs ».
+- BLOQUÉ  : impossible à exécuter. La raison va dans la colonne Observation.
+- -       : pas encore testé.
+
+Aucune écriture en base pendant ce passage. Les actions qui créent, modifient ou
+suppriment des données, ou qui téléchargent un fichier, ne sont pas jouées sans accord.
+
+## 1. Accès et affichage initial
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 1.1 | Ouvrir /commercial/contract | 6 lignes, pied « 1–6 sur 6 », KPI « Total contrats » à 6 | PASS | |
+| 1.2 | Vérifier la cohérence liste / KPI | Le total du KPI est égal au nombre de lignes filtrées | PASS | Après correction d'ANO-01 |
+
+## 2. Recherche
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 2.1 | Saisir « CO » | 4 lignes : CO/55, CO/877, CO/55/88, CO/88/SP | PASS | |
+| 2.2 | Bouton « Effacer la recherche » | Le champ se vide, les 6 contrats reviennent | PASS | |
+| 2.3 | Saisir « xyzabc » (aucun résultat) | 0 ligne et un message qui dit qu'aucun résultat ne correspond | FAILED | Le message affiché est « Aucun contrat n'est disponible pour le moment ». Voir échec E-1 |
+| 2.4 | Saisir « br » | 2 lignes : Brouillon 5 et Brouillon 10 | PASS | |
+| 2.5 | Saisir co entouré d'espaces (début et fin) | Même résultat que « co » : 4 lignes | PASS | |
+| 2.6 | Saisir « CO » en majuscules | Même résultat que « co » : 4 lignes | PASS | |
+| 2.7 | Saisir « O'Brien » (apostrophe) | 0 ligne, aucune erreur | PASS | |
+| 2.8 | Saisir « % » | 0 ligne (le caractère % est une recherche littérale) | FAILED | Renvoie les 6 contrats. Connu : ANO-08, toujours ouverte |
+| 2.9 | Saisir un texte de 263 caractères | 0 ligne, aucune erreur | PASS | Le texte saisi fait 263 caractères et non 300 comme prévu |
+
+## 3. Filtres avancés
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 3.1 | Bouton « Filtrer » (ouvrir les filtres avancés) | Le tiroir « Filtres des contrats » s'ouvre | PASS | |
+| 3.2 | Contrôles de filtre dans le tiroir : statut, type, client, aéroport, échéance, service gestionnaire | 6 contrôles visibles et utilisables | PASS | Corrigé dans ANO-17. Les 6 contrôles sont présents |
+| 3.3 | Bouton « Terminer » du tiroir | Le tiroir se ferme | PASS | Vérifié sur la capture : le tiroir est fermé. Le DOM garde l'élément masqué, ce qui est normal |
+| 3.4 | Bouton « Réinitialiser » du tiroir | Remet les filtres à zéro | PASS | Après « Statut : Officiel », Réinitialiser ramène les 6 contrats et vide le sélecteur |
+| 3.5 | Filtre par type, client, aéroport, échéance, service | Chaque filtre réduit la liste au bon sous-ensemble | PASS | Vérifié un par un : voir 3.9 à 3.12 |
+| 3.9 | Type de contrat « Contrat Domanial » (liste déroulante) | 4 contrats, puce « Type : Contrat Domanial » | PASS | Compte égal à l'API (4), puce correcte |
+| 3.10 | Client : taper « Air » puis choisir « Air Algerie » | Recherche envoyée au serveur, 3 contrats, puce « Client : Air Algerie » | PASS | Liste de résultats issue du serveur (Air Algerie, air express, Air France…), compte égal à l'API (3) |
+| 3.11 | Échéance (bascules) : « Déjà expiré », « Échéance 3 mois », « Échéance 6 mois », puis second clic | Compte égal à l'API, puis retour à 6 après désélection | PASS | Les 3 valeurs renvoient 0, comme l'API. Ce test peu discriminant : aucun contrat n'arrive à échéance dans les 6 mois |
+| 3.12 | Service gestionnaire (bascules) : « Compagnies aériennes », « Commercial domanial », puis second clic | « Compagnies aériennes » : 0, puce « Service : Compagnies aériennes ». Désélection : 6 | PASS | « Commercial domanial » : 6, identique à l'absence de filtre. Ce cas ne prouve pas que le filtre agit |
+| 3.6 | Filtre par statut « Officiel » | Pied et compteur à 3, les 3 contrats officiels seulement | PASS | Affiche CO/877, CO/55/88, CO/88/SP, comme l'API |
+| 3.7 | Puce de filtre après le choix | Une puce « Statut : Officiel », avec le nombre de contrats | PASS | Affiche « Statut : Officiel, 3 contrat(s) correspondant(s) » |
+| 3.8 | Aéroports : choisir « Aeroport Rabah Bitat » dans les puces, puis « Tout effacer » | 2 contrats, puce « Aéroports : Aeroport Rabah Bitat », puis retour à 6 | PASS | Vérifié après passage aux aéroports multiples. Un aéroport inconnu renvoie 0 et les deux aéroports renvoient l'union |
+
+## 4. Colonnes
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 4.1 | Bouton « Colonnes » | Le menu liste les colonnes masquables (Statut, Période de validité) | PASS | |
+| 4.2 | Décocher « Statut » | La colonne Statut disparaît de l'en-tête du tableau | PASS | |
+| 4.3 | Recocher « Statut » | La colonne Statut revient | PASS | |
+
+## 5. Tri
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 5.1 | Cliquer sur « Contrat » | Les lignes se trient par numéro (brouillons regroupés) | PASS | Corrigé dans ANO-02, vérifié en direct |
+| 5.2 | Cliquer sur « Client / aéroport » (deux fois) | L'ordre affiché change à chaque clic, asc puis desc | PASS | Vérifié avec de vrais clics aux coordonnées de l'en-tête : asc puis desc, requêtes et ordre cohérents. Le défaut signalé en E-3 n'est pas reproduit |
+| 5.3 | Cliquer sur « Statut » | L'ordre affiché suit le tri par statut | PASS | Vrai clic : ordre ascendant (Abandonné, Officiel…, Validé juridique). Voir E-3 |
+| 5.4 | Cliquer sur « Période de validité » (deux fois) | L'ordre affiché suit les dates de début, asc puis desc | PASS | Corrigé dans ANO-19. Le tri porte sur la date de début (première date affichée) |
+
+## 6. Pagination
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 6.1 | Choisir 5 lignes par page dans le sélecteur | Pied « 1–5 sur 6 », 5 lignes | FAILED | Le clic sur l'option « 5 » n'a aucun effet. La même valeur choisie au clavier (flèche haut puis Entrée) donne bien 5 lignes. Voir échec E-5 |
+| 6.2 | Bouton « Next Page » | Pied « 6–6 sur 6 », 1 ligne | PASS | Vérifié après 6.1 au clavier |
+| 6.3 | Bouton « Previous Page » | Retour à « 1–5 sur 6 » | PASS | |
+
+## 7. Actualiser
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 7.1 | Bouton « Actualiser la liste » | La page 1 et les 5 lignes restent affichées, KPI inchangé | PASS | |
+
+## 8. Indicateurs
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 8.1 | Cartes KPI après une recherche | Les valeurs restent affichées pendant la requête | PASS | Corrigé dans ANO-14 |
+
+## 9. Actions de ligne
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 9.1 | Bouton « Afficher le détail de CO/55 » | Ouvre la fiche de CO/55 | PASS | |
+| 9.2 | Lien « Retour aux contrats » sur la fiche | Revient à la liste | PASS | |
+| 9.3 | Bouton « Modifier » (crayon) sur un contrat modifiable | Ouvre la page de modification | BLOQUÉ | Aucun contrat modifiable dans la base de test (aucun brouillon) |
+| 9.4 | Supprimer un brouillon, puis annuler | La modale demande confirmation, « Annuler » ferme sans supprimer | BLOQUÉ | Aucun brouillon en base. La suppression n'est pas jouée sans accord |
+
+## 10. Ajouter un contrat
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 10.1 | Bouton « Ajouter un contrat » | Ouvre /commercial/contract/nouveau à l'étape 1 sur 5 | PASS | Rien n'est saisi ni enregistré |
+
+## 11. Export
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 11.1 | Bouton « Exporter » | Télécharge un fichier .xlsx | BLOQUÉ | Télécharger un fichier demande votre accord. Non joué |
+
+## Échecs
+
+### E-1 : Message trompeur quand une recherche ne renvoie rien
+- Étapes pour reproduire : aller sur /commercial/contract, saisir « xyzabc » dans la recherche.
+- Résultat attendu : un message qui dit qu'aucun contrat ne correspond à la recherche.
+- Résultat obtenu : « Aucun contrat » / « Aucun contrat n'est disponible pour le moment ».
+- Gravité : mineur. Lié à une nouvelle anomalie (ANO-16).
+
+### E-2 : Tiroir des filtres avancés vide (corrigé, ANO-17)
+- Étapes pour reproduire : cliquer sur « Filtrer ».
+- Résultat attendu : les 6 filtres (statut, type, client, aéroport, échéance, service) s'affichent.
+- Résultat obtenu : le tiroir affiche son titre, « Aucun filtre actif », puis Réinitialiser et Terminer. Aucun champ.
+- Cause constatée : `contrat-list-view.component.ts` déclare `<app-filter-drawer ... />` sans contenu. Les options des filtres existent dans la classe mais ne sont jamais rendues.
+- Gravité : majeur. Les filtres avancés sont inutilisables. Lié à une nouvelle anomalie (ANO-17).
+
+### E-3 : Tri Client / aéroport et Statut sans effet visible (non reproduit le 2026-10-10, voir ANO-18)
+- Étapes pour reproduire : cliquer sur « Client / aéroport », puis sur « Statut ».
+- Résultat attendu : l'ordre des lignes suit le tri demandé.
+- Résultat obtenu : l'ordre ne change pas, ou ne correspond pas au tri. Côté API, `sort=clientRaisonSocialeSnapshot,asc` et `sort=statut,asc` renvoient bien des lignes triées. Le problème est donc côté affichage.
+- Gravité : moyen. Lié à une nouvelle anomalie (ANO-18).
+
+### E-4 : Tri par période de validité ignoré
+- Étapes pour reproduire : cliquer sur « Période de validité ».
+- Résultat attendu : les contrats sont triés par date d'expiration.
+- Résultat obtenu : l'API renvoie `2027-12-31, 2028-02-29, 2028-06-30, 2027-12-31, 2029-04-30, 2028-12-31` pour `dateExpiration,asc`. Ce n'est pas trié, et le même ordre apparaît pour `desc`.
+- Cause probable (à vérifier, non confirmée) : le tri SQL porte sur la colonne calculée `date_expiration`, alors que la valeur affichée vient de `ContratEntity.getDateExpiration()`, qui la recalcule.
+- Gravité : moyen. Lié à une nouvelle anomalie (ANO-19).
+
+### E-6 : Recherche « % » renvoie tous les contrats
+- Étapes pour reproduire : saisir « % » dans la recherche.
+- Résultat attendu : 0 ligne, le caractère est cherché tel quel.
+- Résultat obtenu : les 6 contrats s'affichent, car `%` joue le rôle de joker SQL.
+- Gravité : mineur. C'est ANO-08, toujours ouverte.
+
+### E-5 : Sélection de la taille de page par clic sans effet
+- Étapes pour reproduire : ouvrir le sélecteur « Rows per page », cliquer sur « 5 ».
+- Résultat attendu : 5 lignes par page, pied « 1–5 sur 6 ».
+- Résultat obtenu : la valeur reste à 10. Le même choix au clavier fonctionne.
+- Gravité : mineur. À confirmer à la main, car l'outil de test peut mal cliquer sur une option de liste déroulante.

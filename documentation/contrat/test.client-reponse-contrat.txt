@@ -1,0 +1,90 @@
+# Tests : Réponse du client (envoi, signature, refus, motif)
+
+Module          : contrat (operation-service)
+Page de départ  : http://localhost:4200/commercial/contract/54f4284c-ed1c-4cfd-842b-e9dcd5634683
+Page testée     : http://localhost:4200/commercial/contract/54f4284c-ed1c-4cfd-842b-e9dcd5634683
+Dernier passage : 2026-10-10, local, base de test (egsa_operation)
+Résultat        : 15 PASS, 0 FAILED, 0 BLOQUÉ, 9 non testés
+
+Statuts :
+- PASS    : vérifié, conforme au résultat attendu.
+- FAILED  : vérifié, non conforme. Détail obligatoire dans la section « Échecs ».
+- BLOQUÉ  : impossible à exécuter. La raison va dans la colonne Observation.
+- -       : pas encore testé.
+
+Ce fichier ne contient que les vérifications manuelles : parcours à l'écran,
+comportement réel de la base et des autres services. Ce qui se vérifie par un
+test automatique est dans le code (voir .claude/rules/strategie-de-test.md).
+
+Chaque ligne doit pouvoir être rejouée par quelqu'un d'autre : le résultat
+attendu dit précisément ce qu'on doit observer (valeur, message, code HTTP,
+donnée en base).
+
+Tests automatiques associés (2026-10-10) :
+- backend : ContratTransitionServiceTest, 19 tests (marquerSigneClient, refuserClient, date minimale, absence de ligne d'envoi).
+- frontend : contrat-client-response.util.spec.ts et contrat-detail-page-data.service.spec.ts (142 tests du module et de la fiche partagée au total).
+
+## 1. Envoi au client
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 1.1 | Ouvrir la fiche d'un contrat VALIDE_JURIDIQUE | Le bouton « Envoyer au client » est présent et actif | PASS | Brouillon 10 |
+| 1.2 | Cliquer sur « Envoyer au client » | Une confirmation demande de valider l'envoi, « Annuler » ferme sans rien envoyer | - | Confirmation vérifiée ; « Annuler » non rejoué |
+| 1.3 | Confirmer l'envoi | En base : statut ENVOYE_AU_CLIENT ; une ligne contrats_envois avec numero_envoi = 1, date_envoi = date du jour, objet « Envoi du contrat au client pour signature » | PASS | |
+| 1.4 | Après la confirmation | Modale de succès « Contrat envoyé au client » avec une explication de la suite | PASS | |
+| 1.5 | Après « OK » | La fiche affiche « Envoyé au client » et propose « Signature client » et « Refus client », sans rechargement de la page | PASS | |
+
+## 2. Signature client
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 2.1 | Ouvrir « Signature client » sur un contrat qui a déjà des signataires | Les 4 champs sont préremplis depuis le contrat | - | Non rejoué : le contrat de test n'avait plus de signataires pendant le passage |
+| 2.2 | Ouvrir « Signature client » | La date de signature vaut la date du jour ; l'aide indique la date du visa juridique | PASS | Date du visa 10/10/2026 |
+| 2.3 | Enregistrer avec les 4 champs vides | Un message « Ce champ est obligatoire. » sous chaque champ vide ; le focus va au premier champ en erreur | PASS | |
+| 2.4 | Saisir une date de signature antérieure au visa, puis enregistrer | Message « La date ne peut pas être antérieure au visa juridique (10/10/2026). » ; rien n'est envoyé | PASS | Saisie du 09/10/2025 |
+| 2.5 | Renseigner les 4 champs avec une date égale au jour du visa, puis enregistrer | Modale de succès « Signature client enregistrée » | PASS | Date 10/10/2026 acceptée |
+| 2.6 | Après 2.5, contrôler en base | contrats : statut SIGNE_PAR_CLIENT, date_signature_client = 2026-10-10, les 4 signataires enregistrés ; contrats_envois : reponse_client = SIGNE, date_retour_client = 2026-10-10 | PASS | |
+| 2.7 | Ouvrir « Signature client » puis « Annuler » | La modale se ferme, aucun changement en base | PASS | Contrôlé avant le refus |
+
+## 3. Refus client
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 3.1 | Enregistrer le refus sans motif | Message « Le motif du refus est obligatoire. » sous le champ ; le focus va au champ | PASS | |
+| 3.2 | Saisir un motif de 1001 caractères | Le compteur passe à 1001 ; un message indique la limite de 1000 caractères, rien n'est envoyé | - | Non rejoué |
+| 3.3 | Enregistrer un motif valide | Modale de succès « Refus du client enregistré ». En base : statut REFUSE_PAR_CLIENT ; contrats_envois : reponse_client = REFUSE, date_retour_client = date du jour ; contrats_historique_statuts : commentaire = le motif, created_by = l'utilisateur | PASS | Motif « Prix trop eleve pour la prestation, clause de paiement a revoir. » |
+| 3.4 | Ouvrir « Refus client » puis « Annuler » | La modale se ferme, aucun changement en base | PASS | Statut resté ENVOYE_AU_CLIENT |
+| 3.5 | Après 3.3, regarder la fiche | Statut « Refusé par le client » ; boutons « Motif du refus », « Modifier » et « Valider Définitivement » ; plus de « Signature client » ni « Refus client » | PASS | |
+
+## 4. Lecture du motif
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 4.1 | Après 3.3, cliquer sur « Motif du refus » | La modale affiche le motif tel quel, « Indiqué par <utilisateur> le <date et heure> » ; « Fermer » la referme | PASS | |
+| 4.2 | Contrat refusé sans motif dans l'historique | La modale affiche « Aucun motif enregistré » | - | Non rejoué |
+
+## 5. Cas limites et autres services
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 5.1 | Double-clic sur « Enregistrer la signature » | Un seul appel POST /marquer-signe-client (réseau) ; un seul changement en base | - | Non rejoué |
+| 5.2 | Contrat changé par un autre utilisateur (ex. envoyé au DG) avant d'enregistrer la signature | Message d'erreur du backend (statut inattendu) ; la fiche reste cohérente | - | Non rejoué |
+| 5.3 | operation-service arrêté pendant l'enregistrement | Message d'erreur ; aucune donnée partiellement enregistrée | - | Non rejoué |
+| 5.4 | Date de signature = date du visa moins 1 jour, puis reprise de la saisie | Le message disparaît dès que la date est corrigée | - | Non rejoué |
+| 5.5 | Refus client sur un contrat sans ligne contrats_envois | Le refus est enregistré ; aucune erreur | - | Couvert par ContratTransitionServiceTest, non rejoué à l'écran |
+
+## Échecs
+
+Aucun échec sur les lignes jouées.
+
+## Pour rejouer les tests
+
+1. Préparer le contrat de test (base egsa_operation, sqlcmd avec -I) : statut VALIDE_JURIDIQUE, date_visa renseignée, aucune ligne dans contrats_envois.
+   Exemple de remise à l'état de départ :
+   UPDATE contrats SET statut = 'VALIDE_JURIDIQUE', date_signature_client = NULL WHERE id = '<id du contrat>';
+   DELETE FROM contrats_envois WHERE contrat_id = '<id du contrat>';
+2. Se connecter avec le compte test (rôle commercial). Le rôle JURIDIQUE a été retiré de ce compte le 2026-10-10 : le visa juridique ne peut pas être joué avec lui, il faut passer le contrat à VALIDE_JURIDIQUE directement en base.
+   Pour les requêtes UPDATE sur la table contrats, lancer sqlcmd avec l'option -I (sans elle, SQL Server refuse avec l'erreur 1934 sur QUOTED_IDENTIFIER).
+3. Pour rejouer 3.x et 4.x, remettre le contrat à ENVOYE_AU_CLIENT et supprimer la réponse de contrats_envois (reponse_client et date_retour_client à NULL).
+4. Contrôles en base : tables contrats, contrats_envois et contrats_historique_statuts de egsa_operation, filtrées sur contrat_id.
+5. Les appels HTTP (POST envoyer-client, marquer-signe-client, refuser-client) se contrôlent dans l'onglet réseau du navigateur.

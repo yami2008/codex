@@ -1,0 +1,32 @@
+========================================================================
+MODULE CONTRAT — Liste des fonctionnalités retenues
+Service : operation-service
+Document de travail (PM) — liste à plat, l'ordre n'indique pas de priorité
+États : [ ] à faire   [~] en cours   [x] livrée   [!] bloquée
+========================================================================
+
+    [ ] Lister les contrats.
+    [ ] Ajouter un contrat.
+    [ ] Modifier un contrat lorsque cela est possible.
+    [ ] Supprimer un contrat lorsque cela est possible.
+
+    [ ] Afficher les détails d’un contrat.
+    [ ] Joindre des fichiers.
+
+    [ ] Valider un contrat et l’envoyer au service juridique.
+    [x] Juridique : refuser un contrat.
+    [x] Juridique : accepter un contrat.
+
+    [~] Envoyer le contrat au client.
+    [~] Client : refuser le contrat.
+    [~] Client : accepter le contrat.
+
+    [ ] Envoyer le contrat au directeur général (DG).
+    [ ] DG : refuser le contrat.
+    [ ] DG : accepter le contrat.
+
+    [ ] Afficher l’historique d’un contrat.
+    [ ] Améliorer la liste des contrats pour voir facilement l’état d’avancement de chacun.
+    [ ] Afficher un tableau de bord complet des contrats.
+
+========================================================================

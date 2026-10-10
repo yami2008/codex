@@ -1,0 +1,83 @@
+# Tests : Modifier un contrat
+
+Module          : Contrat (operation-service)
+Page de départ  : http://localhost:4200/commercial/contract/<id>
+Page testée     : http://localhost:4200/commercial/contract/<id>/modifier
+Dernier passage : 2026-10-10, local, base de test
+Résultat        : 10 PASS, 0 FAILED, 1 BLOQUÉ, 11 non testés
+
+Statuts :
+- PASS    : vérifié, conforme au résultat attendu.
+- FAILED  : vérifié, non conforme. Détail obligatoire dans la section « Échecs ».
+- BLOQUÉ  : impossible à exécuter. La raison va dans la colonne Observation.
+- -       : pas encore testé.
+
+Ce fichier ne contient que les vérifications manuelles : parcours à l'écran,
+comportement réel de la base et des autres services. Ce qui se vérifie par un
+test automatique est dans le code (voir .claude/rules/strategie-de-test.md).
+
+Règle métier : seul le commercial modifie un contrat, et seulement aux statuts
+BROUILLON, RENVOYE_AU_COMMERCIAL et REFUSE_PAR_CLIENT. La modification garde le
+même contrat et son statut. Elle ne fait pas avancer le workflow.
+
+## 1. Accès
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 1.1 | Ouvrir la fiche d'un brouillon | Le bouton « Modifier » est présent et ouvre /commercial/contract/<id>/modifier | PASS | Brouillon 2026-10 |
+| 1.2 | Ouvrir la fiche d'un contrat OFFICIEL | Aucun bouton « Modifier » | PASS | Contrat 2026-7 |
+| 1.3 | Liste des contrats, ligne d'un brouillon puis d'un contrat officiel | Le crayon apparaît sur le brouillon, pas sur le contrat officiel ; il ouvre la page de modification | - | |
+| 1.4 | Ouvrir directement /modifier sur un contrat OFFICIEL | « Modification impossible », aucun formulaire, bouton « Retour aux contrats » | PASS | Contrat 2026-7 |
+
+## 2. Préremplissage
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 2.1 | Ouvrir la modification d'un brouillon | Titre « Modifier le contrat <numéro> », les 5 étapes validées, type, client, représentant, objet, biens et cautions repris | PASS | |
+| 2.2 | Aller à l'étape Documents sans rien changer | « Enregistrer les modifications » désactivé, info-bulle « Aucune modification à enregistrer. » ; fichiers déjà joints listés en lecture seule | PASS | |
+
+## 3. Enregistrement et données en base
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 3.1 | Modifier l'objet puis enregistrer | Message « Contrat modifié avec succès » ; en base, objet modifié, statut toujours BROUILLON | PASS | |
+| 3.2 | Après 3.1, lire contrats_biens | Même id de ligne, surface, tarif commercial et commentaire inchangés | PASS | Ligne 389F75AE…, 25 m², 1 500 |
+| 3.3 | Après 3.1, lire contrats_services | La prestation existe toujours, même id et même commentaire | PASS | |
+| 3.4 | Après 3.1, lire contrats_cautions | Même id de caution, montant et référence inchangés | PASS | |
+| 3.5 | Modifier un contrat qui a des RIP, lire contrats_rips | Les RIP sont toujours présents | BLOQUÉ | La création n'enregistre pas les RIP : aucun brouillon local n'en a |
+| 3.6 | Cliquer sur OK après le succès | La fiche détail du contrat s'ouvre et affiche les nouvelles valeurs | - | |
+
+## 4. Règles et interactions entre champs
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 4.1 | PUT /api/contrats/<id> sur un contrat OFFICIEL | 400, « Le contrat ne peut pas etre modifie dans son statut actuel (OFFICIEL). », aucune donnée modifiée | PASS | |
+| 4.2 | PUT sur un brouillon avec un compte ayant le rôle JURIDIQUE | 403, « Le service juridique ne peut pas modifier un contrat en cours de redaction par le commercial. » | - | |
+| 4.3 | Retirer un aéroport qui porte un bien du contrat | Confirmation « Retirer l'aéroport et ses biens ? », puis le bien disparaît ; après enregistrement, la ligne est supprimée en base | - | |
+| 4.4 | Changer le mode de tarification d'un bien tarifé, enregistrer | En base : nouveau mode, surface et tarifs vidés, commentaire et PV conservés | - | |
+| 4.5 | Ajouter un bien et retirer un autre, enregistrer | Nouvelle ligne créée ; ligne retirée supprimée ; les autres lignes gardent leur id | - | |
+| 4.6 | Ajouter une pièce jointe à l'étape Documents, enregistrer | Le fichier est envoyé après l'enregistrement et apparaît dans l'onglet Pièces jointes de la fiche | - | |
+
+## 5. Utilisation, temps et autres services
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 5.1 | Ouvrir la modification, envoyer le contrat au juridique depuis un 2e onglet, puis enregistrer dans le 1er | Toast « Modification impossible » avec le message du backend ; rien n'est modifié | - | |
+| 5.2 | Double-clic sur « Enregistrer les modifications » | Un seul PUT envoyé | - | |
+| 5.3 | Session Keycloak expirée pendant la saisie, puis enregistrer | Toast « Session expirée » | - | |
+| 5.4 | referentiel-service arrêté à l'ouverture de la modification | Le formulaire s'ouvre ; les biens gardent leur code et leur désignation enregistrés | - | |
+
+## Échecs
+
+Aucun.
+
+## Pour rejouer les tests
+
+1. Le compte utilisé ne doit pas avoir le rôle JURIDIQUE sur MOD_DC_CONTRAT
+   (user_privilege_overrides.role_id). Le compte test l'avait (role_id 1008, ligne 8113) ;
+   il a été retiré le 2026-10-10 pour ces tests. operation-service garde les privilèges
+   en cache 15 minutes par jeton : se reconnecter après un changement de rôle.
+2. Brouillon de test : 2026-10, id 54f4284c-ed1c-4cfd-842b-e9dcd5634683, créé par
+   l'API à partir du contrat 2026-7 (1 bien tarifé, 1 prestation, 1 caution).
+3. Contrôles en base : tables contrats, contrats_biens, contrats_services,
+   contrats_cautions et contrats_rips de egsa_operation, filtrées sur contrat_id.

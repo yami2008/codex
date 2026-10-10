@@ -1,0 +1,48 @@
+# Tests : <Nom de la fonctionnalité>
+
+Module          : <module> (<service>)
+Page de départ  : <URL de la page d'où part le parcours>
+Page testée     : <URL de la page testée>
+Dernier passage : <AAAA-MM-JJ>, <environnement : local, base de test>
+Résultat        : <n> PASS, <n> FAILED, <n> BLOQUÉ, <n> non testés
+
+Statuts :
+- PASS    : vérifié, conforme au résultat attendu.
+- FAILED  : vérifié, non conforme. Détail obligatoire dans la section « Échecs ».
+- BLOQUÉ  : impossible à exécuter. La raison va dans la colonne Observation.
+- -       : pas encore testé.
+
+Ce fichier ne contient que les vérifications manuelles : parcours à l'écran,
+comportement réel de la base et des autres services. Ce qui se vérifie par un
+test automatique est dans le code (voir .claude/rules/strategie-de-test.md).
+
+Chaque ligne doit pouvoir être rejouée par quelqu'un d'autre : le résultat
+attendu dit précisément ce qu'on doit observer (valeur, message, code HTTP,
+donnée en base).
+
+## 1. <Section : un bloc du parcours, ex. « Accès et ouverture »>
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 1.1 | <ce qu'on fait> | <ce qu'on doit observer> | - | |
+
+## 2. <Section suivante : saisie et validation, enregistrement, erreurs, cas limites…>
+
+| N° | Vérification | Résultat attendu | Statut | Observation |
+|---|---|---|---|---|
+| 2.1 | | | - | |
+
+## Échecs
+
+Pour chaque ligne FAILED :
+
+### <N°> : <titre>
+- Étapes pour reproduire :
+- Résultat attendu :
+- Résultat obtenu :
+- Gravité : bloquant | majeur | mineur
+
+## Pour rejouer les tests
+
+1. <données à préparer, comptes nécessaires, état de départ>
+2. <contrôles à faire en base ou dans les appels réseau>
