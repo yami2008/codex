@@ -57,3 +57,6 @@ To Do
 * Applique les modifications nécessaires pour implémenter cette feature
 * Commence l'exécution
 ==========
+On va s'arrêter là pour aujourd'hui
+Modifie les fichiers nécessaires
+==========
