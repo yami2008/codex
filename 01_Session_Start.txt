@@ -1,0 +1,59 @@
+==========
+- Faire le Pull
+- Lancer Docker Desktop
+- Vérifier que la session SQL Server est fonctionnelle, genre un preuve que Docker est en marche
+==========
+Taches à faire
+1. Run les services backend en utilisant le profil local.
+2. Run le frontend.
+3. Docker et ses images sont tous en marche, donc occupe toi uniquement de ces services.
+4. Lire le fichier @ERP_Docs/prd.md 
+5. Identifiants SQL Local
+	* Nom du Server : localhost,1433
+	* Nom d'utilisateur : sa
+	* Mot de passe : ChangeMe123!
+6. Identifiants Compte Test
+	* test
+	* Egsa@2026
+7. Tu as le droit d'utiliser les identifiants que je t'ai fournis pour te connecter à la base de données et à l'application.
+8. Ouvre le navigateur intégré et connecte toi avec les identifiants que je viens de te donner
+9. Nous allons travailler sur le Module : Contrat
+10. Donne moi la liste des fonctionnalité qu'on doit développer pour ce module Contrat, je veux avoir un Dashboard claire, pour chaque fonctionnalité est ce que elle est implémenté, est ce que elle est testée et si c'est le cas quand on a fait sont dernier tests et combien d'anomalie on été traité depuis sa dernière fois aussi même chose pour Audit de Optimisation, Audit de Sécurité et Audit de Validation, si tu ne sais pas mets Vide afin de savoir et le considérer comme Non Fait, c'est ce genre de Dashboard qui est très pertienent.
+11. Commence l'exécution.
+12. Si un serveur est déjà Running alors ne le redémarre pas
+==========
+- Choisir la Fonctionnalité sur laquelle on veut travailler. 
+==========
+- Fonctionnalité : Valider Un Contrat
+- Schéma de base de données : @schema.contrat.md
+- Ne fais rien pour le moment
+==========
+To Do
+* Frontend
+1. Button dans la page qui affiche les détails d'un Contrat
+2. Modale de Confirmation
+3. Modale qui affiche le motif du refus du client
+4. Validation Frontend + Message d'erreur sous les champs concernés + Auto scroll Vers le premier champs en question
+5. Envoyer API Backend
+* Backend
+1. API Backend
+2. Validation Backend
+3. Traitement Backend
+4. Persistance dans la base de données
+5. Response au Frontend
+* Frontend
+1. Recevoir la réponse depuis le Backend
+2. Modale de succès explicative; le user doit comprendre ce qu'il s'est passé
+3. Mise à jour Frotnend
+4. Traitement Frontend en temps réel, pas besoin de relancer un autre API pour voir les mises à jour.
+* UI
+1. Agis comme un expert en UI/UX, essaie de faire de belle interface joli à regarder, genre de belles modales, de beau champs, bouton etc...
+* Vérification
+1. Tu as la permission de exécuter des requêtes dans cette base de données car elle est base de données de tests
+2. Tu peux faire des captures d'écrans
+3. Les Tests unitaires
+4. Les Smoke Tests : Tests d'intégration
+5. L'essentiel est que tu as utilisé tous les moyen possible afin de confirmer que cette Feature fonctionne correctement.
+* Applique les modifications nécessaires pour implémenter cette feature
+* Commence l'exécution
+==========

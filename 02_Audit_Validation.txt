@@ -1,0 +1,28 @@
+==========
+* On va faire un tests d'audit
+* Je voudrais que tu fasse un tests de validation de fonctionnalité, c'est à dire dans la page qui liste les contrats, tu cibles toutes les fonctionnalités en rapport avec la fonctionnalité : Lister les Contrats.
+* Pour chaque fonctionnalité tu essaie de casser le code, tu essaie de provoquer des bugs, et à la fin tu me dis les anomalies que tu as trouvé
+* Tu me les fait dans un fichier, tu les écrit toute puis tu exposes chaque anomalie une à une
+* Pour chaque anomalie, il faut me l'expliquer, genre voici cette anomalie et voici ce qui se passe si tu vas la laisser, les bugs et les problèmes qu'elle va engendrer.
+* donc en résumé
+1. Va dans la page qui liste des contrats
+2. Repérer les fonctionnalités en relation avec Lister Les Contrats.
+3. Les tester, que ce soit tests unitaire ou smoke tests, tu essaie de faire buguer le code, ton but est de trouver des future bug ou anomalies qu'on avait pas prêter attention, des choses qu'on avait pas vu
+4. Test Tous
+5. A la fin Rédige un rapport de Audit de Validation avec tout ce que tu as pu trouver.
+6. Puis tu me donnes les anomalie une à une, une à fois, pour chaque anomalie on verra si on doit la traiter ou non
+7. Commence par les anomalies les plus grave.
+8. Pour chaque anomalie, dis moi ce qu'elle fait, explique la moi, genre donne moi le scénario qui va la reproduire
+9. As tu compris ce que tu dois faire ?
+10. Ne fais rien pour le moment
+==========
+ok, dans ERP_Docs/Modules/operation-service/contrat/
+==========
+lance l'audit
+==========
+* On le traite maintenant
+* Procède aux modifications nécessaires pour corriger ce bug
+* Quand tu aura fini vérifie que ce bug est belle et bien réglé
+* Si tout est bon Modifie le rapport pour dire que cette anomalie est réglée.
+* Commence l'exécution
+==========
