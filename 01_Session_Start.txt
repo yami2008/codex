@@ -4,9 +4,9 @@
 - Vérifier que la session SQL Server est fonctionnelle, genre un preuve que Docker est en marche
 ==========
 Taches à faire
-1. Run les services backend en utilisant le profil local.
-2. Run le frontend.
-3. Docker et ses images sont tous en marche, donc occupe toi uniquement de ces services.
+1. Run les services backend en utilisant le profil local
+2. Run le frontend
+3. Docker et ses images sont tous en marche, donc occupe toi uniquement de ces services
 4. Lire le fichier @ERP_Docs/prd.md 
 5. Identifiants SQL Local
 	* Nom du Server : localhost,1433
@@ -15,12 +15,14 @@ Taches à faire
 6. Identifiants Compte Test
 	* test
 	* Egsa@2026
-7. Tu as le droit d'utiliser les identifiants que je t'ai fournis pour te connecter à la base de données et à l'application.
+7. Tu as le droit d'utiliser les identifiants que je t'ai fournis pour te connecter à la base de données et à l'application
 8. Ouvre le navigateur intégré et connecte toi avec les identifiants que je viens de te donner
 9. Si un serveur est déjà Running alors ne le redémarre pas
 ==========
 - Nous allons travailler sur le Module : Contrat
-- Donne moi la liste des fonctionnalité qu'on doit développer pour ce module, je veux avoir un Dashboard claire, pour chaque fonctionnalité est ce que elle est implémentée, est ce que elle est testée et si c'est le cas quand on a fait son dernier test et combien d'anomalie on été traité depuis sa dernière fois, aussi même chose pour Audit de Optimisation, Audit de Sécurité et Audit de Validation, si tu ne sais pas mets Vide afin de savoir et le considérer comme Non Fait, c'est ce genre de Dashboard qui est très pertinent, avec un format d'affichage lisible si possible
+- Donne moi la liste des fonctionnalités qu'on doit développer pour ce module, je veux avoir un tableau clair qui liste
+   - Le nom de la fonctionnalité.
+   - Si elle est implémentée ou pas.
 - Commence l'exécution.
 ==========
 - Choisir la Fonctionnalité sur laquelle on veut travailler.
@@ -30,81 +32,59 @@ Taches à faire
 - Ne fais rien pour le moment
 ==========
 To Do
-* Frontend
-   * Ajouter le bouton qui permet de envoyer le contrat au DG.
-   * Quand je clique dessus ==> Boite de confirmation afin que le user sache ce qu'il va faire.
-   * Si il confirme, à priori je ne pense pas qu'il y a des informations à envoyer mais vérifie comme même.
-   * Si il y a des informations à envoyer ==> Validation Frontend
-   * Si erreur de validation ==> Message d'erreur sous les champs concernés + Auto scroll  vers le premier champ erroné.
-* Backend
-   * Si il y a des choses à recevoir depuis le Frontend ==> Validation Backend Totale
-   * Traitement Backend
-   * Persistance dans la base de données
-   * Mise à jour backend
-   * Réponse au Frontend 
-* Frontend
-   * Recevoir la réponse
-   * Boite de succès disant ce qu'il s'est passé avec un message explicatif afin que le user comprenne ce qu'il vient de faire
-   * Mise à jour Frontend en temps réel ==> Le user doit voir les mises à jour de cette fonctionnalité sans avoir à recharger la page.
-* UI
-   * Agis comme un expert en UI/UX, essaie de faire de belle interface joli à regarder, genre de belles modales, de beaux champs, boutons, icones, etc...
-   * Textes explicatifs et clairs
-* Vérification
-   * Tu as la permission de exécuter des requêtes dans cette base de données car elle est base de données de tests
-   * Tu peux faire des captures d'écrans
-   * Les Tests unitaires
-   * Les Smoke Tests : Tests d'intégration
-   * L'essentiel est que tu as utilisé tous les moyens possibles afin de confirmer que cette Feature fonctionne correctement.
-* Applique les modifications nécessaires pour implémenter cette feature
-* Commence l'exécution
+1. Frontend
+   - Ajouter le bouton qui permet de Accepter le Contrat.
+   - Quand je survole le bouton ==> Tooltip s'affiche + Curseur change
+   - Quand je clique dessus ==> Boite de confirmation afin que le user sache ce qu'il va faire.
+   - Si il confirme, à priori je ne pense pas qu'il y a des informations à envoyer mais vérifie comme même.
+   - Si il y a des informations à envoyer ==> Validation Frontend
+   - Si il y a des champs ==> Quand je les survole une tooltip apparait affichant le contenue du champ.
+   - Si erreur de validation ==> Message d'erreur sous les champs concernés + Auto scroll  vers le premier champ erroné.
+   - Quand le user appuie sur le bouton ==> Loader couvant toute la page avec un message clair.
+   - Eviter la double soumission si un user clique deux fois sur le bouton.
+2. Backend
+   - Si il y a des choses à recevoir depuis le Frontend ==> Validation Backend Totale
+   - Traitement Backend
+   - Persistance dans la base de données
+   - Mise à jour backend
+   - Réponse au Frontend
+3. Frontend
+   - Recevoir la réponse
+   - Boite de succès disant ce qu'il s'est passé avec un message explicatif afin que le user comprenne ce qu'il vient de faire
+   - Mise à jour Frontend en temps réel ==> Le user doit voir les mises à jour de cette fonctionnalité sans avoir à recharger la page
+   - Si erreur 5xx ==> Afficher un toast en bas de page disant que c'est une erreur serveur
+   - Si c'est une erreur 4xx, sauf erreur de validation ==> Afficher un toast en bas de page avec une explication à l'erreur, pas trop, par exemple Elément Non trouvé, Permission Refusée, etc.., genre le user comprenne ce qu'il s'est passé.
+4. UI
+   - Agis comme un expert en UI/UX, essaie de faire de belle interface joli à regarder, genre de belles modales, de beaux champs, boutons, icones, etc...
+   - Textes explicatifs et clairs
+5. Vérification
+   - Tu as la permission de exécuter des requêtes dans cette base de données car elle est base de données de tests
+   - Tu peux faire des captures d'écrans
+   - Les Tests unitaires
+   - Les Smoke Tests : Tests d'intégration
+   - L'essentiel est que tu as utilisé tous les moyens possibles afin de confirmer que cette Feature fonctionne correctement.
+- Si tu as des questions sur le process, n'hésite pas à me poser des questions
+- Applique les modifications nécessaires pour implémenter cette feature
+- Commence l'exécution
 ==========
-* Fonctionnalité : Envoie du Contrat au DG.
-* Crée le fichier de tests manuels pour cette fonctionnalité.
-* Pour cela je voudrais que tu lances un subagents Opus 5.5 avec niveau d'effort Moyen, c'ets lui qui sera en charge de ressencer les différents tests.
-* Une fois qu'il aura fini, il va te transmettre ses résultats. 
-* Ce sont des tableaux de vérifications manuelles, à jouer à l’écran ou en base : une ligne = une vérification, avec le résultat attendu et un statut.
-* Lire le modèle pour respecter son format exactement.
+- Fonctionnalité : Accepter le contrat
+To Do 
+- Crée le fichier de tests manuels pour cette fonctionnalité.
+- Pour cela je voudrais que tu lances un sous-agents Opus 5.5 avec niveau d'effort Moyen, c'est lui qui sera en charge de recenser les différents tests.
+- Une fois qu'il aura fini, il va te transmettre ses résultats. 
+- Ce sont des tableaux de vérifications manuelles, à jouer à l’écran ou en base : une ligne = une vérification, avec le résultat attendu et un statut.
+- Lire le modèle pour respecter son format exactement.
+- Ne lance pas les vérifications pour le moment
+- Commence l'exécution
 ==========
-- Jouer les vérifications manuelles du fichier @test.envoyer-au-dg
+- Affiche moi ce fichier.
 ==========
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- Fonctionnalité : Accepter le contrat
+- Jouer les vérifications manuelles de la section 1 du fichier du test de cette fonctionnalité.
+- Tu peux exécuter n'importe quelle requête dans la base de données car elle est une base de données de tests.
+- Tu peux arranger la base de données de n'importe quelle façon qui t'arrange pour exécuter les tests.
+- Si le tests passe alors tu le marques comme PASS, si il fail alors tu marque FAIL.
+- Commence l'exécution.
 ==========
-On va s'arrêter là pour aujourd'hui
-Modifie les fichiers nécessaires
-==========
-1. Tu peux le laisser ainsi, merci
-2. Parfait donc la fonctionnalité est Ready To Be In Prod ? on peut le dire ?
-Non, pas encore. Le flux principal marche, mais il manque des vérifications avant de dire « prêt pour la prod ».
-- **Vérifications manquantes** : double-clic sur « Confirmer », contrat modifié par un autre utilisateur pendant la confirmation, session expirée, operation-service arrêté. Ce sont les angles d'attaque prévus par la stratégie de test.
-- **Chemin d'erreur de l'écran non vu** : le bouton n'apparaît que sur le bon statut. Seule l'API a été testée sur ces cas.
-- **Fichier de tests manquant** : la règle du projet demande un `test.envoyer-au-dg.txt` avec chaque vérification et son statut. Je ne l'ai pas créé.
-- **Suite backend pas verte** : les 3 échecs de `ContratTransitionIntegrationTest` (400 attendu, 422 reçu) existaient avant ce travail, mais ils restent dans la suite.
-- **Workflow incomplet** : après « Transmis à la direction », le contrat reste bloqué. Les étapes « DG : accepter » et « DG : refuser » ne sont pas construites. À toi de dire si la mise en prod sans ces étapes est acceptable.
-- **Rien n'est commité** : aucune trace Git pour l'instant.
-- **Point ouvert sur la base** : `ddl-auto: update` tente encore des modifications de schéma au démarrage. Ce point doit être tranché avant tout déploiement sur une base réelle.
-Pour passer à « prêt », il faut au minimum : créer le fichier de tests manuels, jouer les cas listés ci-dessus, et décider du sort des 3 tests en échec et des étapes DG. Je peux commencer par le fichier de tests et les vérifications manquantes si tu veux.
+- Ici on va commencer les Audits.
 ==========
