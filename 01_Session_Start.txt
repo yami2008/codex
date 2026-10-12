@@ -88,3 +88,12 @@ To Do
 ==========
 - Ici on va commencer les Audits.
 ==========
+
+1. Ajoute moi les Header du Stepper à 5 étapes
+2. Mais je ne veux pas que simple Steppers, je veux une Interface très belle, très bien faite, Des stepper qui sont bien réalisé, artistiquement
+3. Je veux avoir l'effet Waw quand je les vois
+4. Tu peux t'inspirer de Net.
+5. Animation et Icones à Gogo
+6. Texte lisible et claire 
+7. Pas trop de texte, surtout si l'icone le remplace
+8. Laisse le contenue vide pour le, moment
